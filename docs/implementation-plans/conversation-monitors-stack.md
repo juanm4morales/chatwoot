@@ -41,3 +41,32 @@ Every draft includes the whole stack map, parent/successor, original reference, 
 After a parent lands in develop, replay only the child's own changes on updated develop and retarget it; with squash merges, avoid reintroducing the parent's changes. Refresh descendants in order and rerun affected validation. Do not delete predecessor branches while descendants still target them. Recheck shared provider config and feature-bit allocation against develop before merging.
 
 All PRs are drafts. Creation does not authorize merge, rollout, or closing the original reference PR. No product decisions remain open for this extraction.
+
+
+## Published draft stack
+
+| Order | Draft PR | Incremental diff |
+| --- | --- | --- |
+| 1 | [#15966: define monitor data contracts](https://github.com/chatwoot/chatwoot/pull/15966) | 22 files changed, 525 insertions(+), 2 deletions(-) |
+| 2 | [#15967: enforce monitor call credits](https://github.com/chatwoot/chatwoot/pull/15967) | 6 files changed, 294 insertions(+) |
+| 3 | [#15968: evaluate monitor conditions through OpenRouter](https://github.com/chatwoot/chatwoot/pull/15968) | 13 files changed, 536 insertions(+), 1 deletion(-) |
+| 4 | [#15969: process durable monitor evaluations](https://github.com/chatwoot/chatwoot/pull/15969) | 10 files changed, 653 insertions(+) |
+| 5 | [#15970: track monitor source activity](https://github.com/chatwoot/chatwoot/pull/15970) | 10 files changed, 275 insertions(+), 3 deletions(-) |
+| 6 | [#15971: support monitor lifecycle transitions](https://github.com/chatwoot/chatwoot/pull/15971) | 9 files changed, 686 insertions(+) |
+| 7 | [#15972: expose conversation monitor APIs](https://github.com/chatwoot/chatwoot/pull/15972) | 6 files changed, 549 insertions(+) |
+| 8 | [#15973: display live monitor reports](https://github.com/chatwoot/chatwoot/pull/15973) | 13 files changed, 1203 insertions(+) |
+| 9 | [#15974: create and preview conversation monitors](https://github.com/chatwoot/chatwoot/pull/15974) | 7 files changed, 597 insertions(+) |
+| 10 | [#15975: manage conversation monitors](https://github.com/chatwoot/chatwoot/pull/15975) | 5 files changed, 836 insertions(+), 8 deletions(-) |
+
+The report-view PR contains two review commits: supporting components/realtime (442 added lines) and the graph/detail page (761 added lines). The management PR separates its product code from the 501-line original design/rollout documents. These are the two larger PRs; the other incremental diffs are 275–686 lines before this final delivery note.
+
+## Final validation
+
+- 530 backend examples and 38 frontend tests passed on the complete stack.
+- Ruby lint passed across 60 files. Frontend lint passed across 17 files with zero errors and eight known translation/root-condition warnings.
+- The production frontend build passed, with existing bundle-size/dependency warnings.
+- Fresh-database migrations, final schema uniqueness/default-off checks, and both Community/Enterprise Zeitwerk checks passed.
+- Each intermediate branch passed its focused checks before committing, with repository hooks enabled.
+- The complete feature tree is identical to the clean merge of reference commit `562de2bccef4ff9b13179a35e08cb09971971c4c` onto recorded develop `8aa1fafe2034d69af8e1b2c9ace74b9dfb1d878d`, apart from this stack-plan document. No feature behavior or applied migration IDs were changed by extraction.
+
+GitHub CI runs separately; local validation does not imply all remote checks have completed. Keep the original PR open as a reference while reviewing these drafts.
